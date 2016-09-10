@@ -1,0 +1,24 @@
+<div id="subjects">
+  <h1>Activity Tracker</h1>
+
+  <section id="all_subjects" class="all_subjects">
+    <h2>All Subjects</h2>
+    <ul>
+      <% @subjects.each do |list| %>
+        <a href="/subject/<%= list[:id] %>">
+          <li><%= list[:name] %></li>
+        </a>
+      <% end %>
+    </ul>
+
+  <section id="create_subject" class="create_subject">
+    <h2>Create a New Subject</h2>
+
+    <form action="/" method="post">
+      <label for="subject_name">Subject Name</label>
+      <input type="text" name="subject_name" id="subject_name" />
+
+      <input type="submit" value="Add"/>
+    </form>
+  </section>
+</div>
