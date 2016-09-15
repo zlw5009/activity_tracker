@@ -1,0 +1,29 @@
+<div id="subjects">
+  <h1><a href="/">Study Tracker</a></h1>
+
+  <section id="all_subjects" class="all_subjects">
+    <div class="subject">
+      <h2><%= @subject_info[0][:name] %><span><a href="/subject/<%= @subject_id %>/edit">Edit</a></span></h2>
+    </div>
+
+    <ul>
+      <% @all_topics.each do |list| %>
+        <a href="/subject/<%= @subject_id %>/topic/<%= list[:id] %>">
+          <li><%= list[:name] %></li>
+        </a>
+      <% end %>
+    </ul>
+
+    <label for="add">+</label>
+    <input type="checkbox" id="add" hidden />
+
+    <div class="subject">
+      <form class="add" action="/subject/<%= @subject_id %>" method="post">
+        <h2>Add Topics</h2>
+        <input type="text" name="new_topic" id="new_topic" placeholder="Topic Name" />
+
+        <button type="submit" id="button">Add</button>
+      </form>
+    </div>
+  </section>
+</div>
