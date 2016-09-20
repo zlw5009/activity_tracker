@@ -20,7 +20,13 @@ helpers do
   end
 
   def load_topics(subject_id)
-    @storage.all_topics(subject_id)
+    topics = @storage.all_topics(subject_id)
+
+    if (topics.empty?)
+      topics = @storage.subject_name(subject_id)
+    end
+
+    topics
   end
 
   def new_topic(topic_name, subject_id)

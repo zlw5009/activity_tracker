@@ -7,10 +7,12 @@
     </div>
 
     <ul>
-      <% @all_topics.each do |list| %>
-        <a href="/subject/<%= @subject_id %>/topic/<%= list[:id] %>">
-          <li><%= list[:name] %></li>
-        </a>
+      <% if @all_topics[0].size > 1 %>
+        <% @all_topics.each do |list| %>
+          <a href="/subject/<%= @subject_id %>/topic/<%= list[:id] %>">
+            <li><%= list[:name] %></li>
+          </a>
+        <% end %>
       <% end %>
     </ul>
 

@@ -54,6 +54,14 @@ class Database
     query(sql, topic_id)
   end
 
+  def subject_name(subject_id)
+    sql = "SELECT name FROM subjects WHERE id = $1"
+
+    result = query(sql, subject_id)
+
+    result.map { |tuple| tuple_subject_name_to_hash(tuple) }
+  end
+
   private 
 
   def tuple_subject_to_hash(tuple)
@@ -65,8 +73,11 @@ class Database
   def tuple_topic_to_hash(tuple)
     { id: tuple["id"].to_i,
       name: tuple["name"],
-      start_time: tuple["start_time"],
-      end_time: tuple["end_time"],
+      time_elapsed: tuple["time_elapsed"],
       subject_name: tuple["subject_name"] }
+  end
+
+  def tuple_subject_name_to_hash(tuple)
+    { subject_name: tuple["name"] }
   end
 end
