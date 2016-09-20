@@ -48,7 +48,6 @@ end
 get '/subject/:id' do
   @subject_id = params[:id].to_i
   @all_topics = load_topics(@subject_id)
-  @subject_info = load_subject_info(@subject_id)
 
   erb :topics
 end

@@ -30,7 +30,12 @@ class Database
   end
 
   def all_topics(subject_id)
-    sql = "SELECT topics.*, subjects.name AS subject_name FROM topics RIGHT JOIN subjects ON subject_id = subjects.id WHERE subject_id = $1;"
+    sql = <<~SQL
+      SELECT topics.*, subjects.name AS subject_name 
+      FROM topics 
+      RIGHT JOIN subjects ON subject_id = subjects.id 
+      WHERE subject_id = $1;
+    SQL
 
     result = query(sql, subject_id)
 
