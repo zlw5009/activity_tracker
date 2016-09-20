@@ -6,4 +6,4 @@ gem "erubis"
 gem "pg"
 gem "sequel"
 
-ruby "2.2.1"
+ruby "2.3.1"

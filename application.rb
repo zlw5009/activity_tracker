@@ -23,10 +23,6 @@ helpers do
     @storage.all_topics(subject_id)
   end
 
-  def load_subject_info(subject_id)
-    @storage.subject_info(subject_id)
-  end
-
   def new_topic(topic_name, subject_id)
     @storage.create_new_topic(topic_name, subject_id)
   end
@@ -69,7 +65,6 @@ end
 get '/subject/:id/edit' do 
   @subject_id = params[:id].to_i
   @all_topics = load_topics(@subject_id)
-  @subject_info = load_subject_info(@subject_id)
 
   erb :edit_topics
 end
