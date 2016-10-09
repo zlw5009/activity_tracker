@@ -22,6 +22,12 @@ class Database
     result.map { |tuple| tuple_subject_to_hash(tuple) }
   end
 
+  def delete_subject(subject_id)
+    sql = "DELETE FROM subjects WHERE id = $1;"
+
+    query(sql, subject_id)
+  end
+
   def subject_info(subject_id)
     sql = "SELECT * FROM subjects WHERE id = $1;"
     result = query(sql, subject_id)

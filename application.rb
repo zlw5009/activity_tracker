@@ -1,10 +1,14 @@
 require "sinatra"
-require "sinatra/reloader"
 require "sinatra/content_for"
 require "tilt/erubis"
 require 'pry'
 
 require_relative "database"
+
+configure(:development) do
+  require "sinatra/reloader"
+  also_reload "sequel_persistence.rb"
+end
 
 before do 
   @storage = Database.new
@@ -17,6 +21,10 @@ helpers do
 
   def new_subject(subject_name)
     @storage.create_new_subject(subject_name)
+  end
+
+  def delete_subject(subject_id)
+    @storage.delete_subject(subject_id)
   end
 
   def load_topics(subject_id)
@@ -48,6 +56,19 @@ post '/' do
   subject_name = params[:new_subject].strip
 
   new_subject(subject_name)
+  redirect '/'
+end
+
+get '/edit' do
+  @subjects = load_subjects
+
+  erb :edit_index
+end
+
+post '/subject/:id/destroy' do
+  subject_id = params[:id].to_i
+
+  delete_subject(subject_id)
   redirect '/'
 end
 

@@ -7,9 +7,9 @@
     </div>
 
     <ul>
-      <% @subjects.each do |list| %>
-        <a href="/subject/<%= list[:id] %>">
-          <li><%= list[:name] %></li>
+      <% @subjects.each do |subject| %>
+        <a href="/subject/<%= subject[:id] %>">
+          <li><%= subject[:name] %></li>
         </a>
       <% end %>
     </ul>

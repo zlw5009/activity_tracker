@@ -1,0 +1,23 @@
+<div id="subjects">
+  <h1><a href="/">Study Buddy</a></h1>
+
+  <section id="all_subjects" class="all_subjects">
+    <div class="subject">
+      <h2>Subjects<span><a href="/">Cancel</a></span>
+      </h2>
+    </div>
+
+     <ul>
+      <% @subjects.each do |subject| %>
+        <li>
+          <a href="/subject/<%= subject[:id] %>">
+            <%= subject[:name] %>
+          </a>
+          <form class="delete" action="/subject/<%= subject[:id] %>/destroy" method="post">
+            <button type="submit" id="delete">X</button>
+          </form>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</div>
